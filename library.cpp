@@ -1,33 +1,26 @@
 #include <iostream>
-#include <string.h>
-#include <typeinfo>
+#define getName(var) #var
 
-template <typename T>
-void swapValue(T &a, T &b)
+using std::cin;
+using std::cout;
+using std::endl;
+using std::string;
+using std::system;
+
+void cmd(string input)
 {
-    T temp = a;
-    a = b;
-    b = temp;
+    system(input.c_str());
 }
 
-template <typename T>
-int length(T array[])
+void ic(string description, string variable)
 {
-    std::string typeFull = typeid(array).name();
-    std::string type = typeFull.substr(4, 4);
-
-    array = int(array);
-    int arraySize = sizeof(array) / sizeof(array[0]);
-    return arraySize;
+    string result = "textreset=$(tput sgr0) && purple=$(tput setaf 125) && green=$(tput setaf 2) && echo \"${purple}ic | ${textreset}" + description + ":${green} " + variable + " ${textreset}\"";
+    cmd(result);
 }
 
-
-int main()
-
+void ic(string variable)
 {
-    int items[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-    std::cout << typeid(items).name() << std::endl;
-    std::cout << length(items) << std::endl; //zeigt auf pointer!!
-
-    return 0;
+    string result = "textreset=$(tput sgr0) && purple=$(tput setaf 125) && green=$(tput setaf 2) && echo \"${purple}ic |${green} " + variable + " ${textreset}\"";
+    cmd(result);
 }
+
